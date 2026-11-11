@@ -1,3 +1,55 @@
 <resources>
     <string name="app_name">AppLocker</string>
+
+    <!-- Lista de aplicaciones -->
+    <string name="search_apps">Buscar aplicación</string>
+    <string name="configure_limit">Configurar límite</string>
+    <string name="edit_limit">Editar límite</string>
+    <string name="usage_today">Hoy: %1$s</string>
+    <string name="usage_today_with_limit">Hoy: %1$s de %2$s</string>
+    <string name="limit_paused">Límite en pausa</string>
+    <string name="no_apps_found">No se ha encontrado ninguna aplicación</string>
+
+    <!-- Permisos -->
+    <string name="permission_usage_title">Acceso al uso</string>
+    <string name="permission_usage_body">Necesario para medir cuánto tiempo usas cada app. Pulsa «Conceder», busca AppLocker en la lista y activa «Permitir acceso al uso».</string>
+    <string name="permission_notifications_title">Notificaciones</string>
+    <string name="permission_notifications_body">Necesario para avisarte del tiempo que te queda antes de llegar al límite.</string>
+    <string name="permission_overlay_title">Mostrar sobre otras apps</string>
+    <string name="permission_overlay_body">Necesario para mostrar la pantalla de bloqueo cuando superas el límite de una app.</string>
+    <string name="grant">Conceder</string>
+
+    <!-- Configuración del límite -->
+    <string name="back">Atrás</string>
+    <string name="daily_limit">Límite diario</string>
+    <string name="hours">Horas</string>
+    <string name="minutes">Minutos</string>
+    <string name="limit_enabled">Límite activo</string>
+    <string name="alerts_title">Avisos de tiempo restante</string>
+    <string name="alerts_body">Recibirás una notificación cuando te quede este tiempo de uso.</string>
+    <string name="alerts_empty">Sin avisos configurados</string>
+    <string name="alert_minutes_left">Minutos restantes</string>
+    <string name="add">Añadir</string>
+    <string name="remove_alert">Quitar aviso de %1$s</string>
+    <string name="save">Guardar</string>
+    <string name="delete_limit">Eliminar límite</string>
+    <string name="error_limit_range">El límite debe estar entre 1 minuto y 24 horas</string>
+    <string name="error_alert_range">El aviso debe ser menor que el límite diario</string>
+
+    <!-- Notificaciones -->
+    <string name="channel_monitor_name">Vigilancia de uso</string>
+    <string name="channel_monitor_description">Notificación permanente mientras AppLocker mide el tiempo de uso</string>
+    <string name="channel_alerts_name">Avisos de tiempo restante</string>
+    <string name="channel_alerts_description">Avisos cuando te acercas al límite diario de una app</string>
+    <string name="monitor_notification_title">AppLocker está activo</string>
+    <string name="monitor_notification_text">Vigilando el tiempo de uso de tus apps limitadas</string>
+    <string name="alert_notification_title">%2$s: %1$s restantes</string>
+    <string name="alert_notification_text">Has usado %1$s de tu límite diario de %2$s.</string>
+    <string name="limit_reached_notification_title">Límite alcanzado: %1$s</string>
+    <string name="limit_reached_notification_text">Has agotado tu límite diario de %1$s. Vuelve mañana.</string>
+
+    <!-- Pantalla de bloqueo -->
+    <string name="block_title">Límite de tiempo alcanzado</string>
+    <string name="block_message">Has agotado tu tiempo de hoy para %1$s.</string>
+    <string name="block_go_home">Ir a inicio</string>
 </resources>

@@ -2,7 +2,38 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Acceso al uso: permiso especial. Declararlo solo hace que la app aparezca en
+         Ajustes > Acceso al uso; el usuario lo concede manualmente desde allí. -->
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+
+    <!-- Notificaciones (permiso en tiempo de ejecución desde Android 13). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Servicio en primer plano que vigila el tiempo de uso. Desde Android 14 hay que
+         declarar además el permiso del tipo concreto de servicio. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+
+    <!-- "Mostrar sobre otras aplicaciones": pantalla de bloqueo superpuesta. -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- Reactivar la vigilancia tras reiniciar el dispositivo. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Visibilidad de paquetes (Android 11+): sin esto, PackageManager solo devuelve
+         unas pocas apps. Con este filtro vemos todas las que tienen icono en el launcher,
+         sin necesidad del permiso QUERY_ALL_PACKAGES (restringido por Google Play). -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
     <application
+        android:name=".AppLockerApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -23,6 +54,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".service.UsageMonitorService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Mide el tiempo de uso de las apps que el usuario ha limitado para avisarle del tiempo restante y bloquearlas al agotar su límite diario." />
+        </service>
+
+        <receiver
+            android:name=".service.BootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
